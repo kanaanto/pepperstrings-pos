@@ -55,3 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php else: ?>
         <div class="wrapper">
 <?php endif; ?>
+
+<?php if ($this->router->fetch_class() == 'inventory'):?>
+        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datatable/data-table.css'); ?>">
+<?php endif; ?>
