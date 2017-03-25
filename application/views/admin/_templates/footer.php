@@ -28,10 +28,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
         <script src="<?php echo base_url($frameworks_dir . '/adminlte/js/adminlte.min.js'); ?>"></script>
         <script src="<?php echo base_url($frameworks_dir . '/domprojects/js/dp.min.js'); ?>"></script>
-<?php if ($this->router->fetch_class() == 'inventory'):?>
-        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table.min.js'); ?>"></script>
-        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-bootstrap.js'); ?>"></script>
-        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-initialize.js'); ?>"></script>
-<?php endif;?>
     </body>
 </html>
