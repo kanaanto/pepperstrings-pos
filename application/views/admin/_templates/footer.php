@@ -31,7 +31,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php if ($this->router->fetch_class() == 'inventory'):?>
         <script src="<?php echo base_url($plugins_dir . '/datatable/data-table.min.js'); ?>"></script>
         <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-bootstrap.js'); ?>"></script>
-        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-initialize.js'); ?>"></script>
+        <script src="<?php echo base_url($user_defined . '/inventory/inventory.js'); ?>"></script>
+<?php endif;?>
+<?php if ($this->router->fetch_class() == 'products'):?>
+        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table.min.js'); ?>"></script>
+        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-bootstrap.js'); ?>"></script>
+        <script src="<?php echo base_url($plugins_dir . '/jqueryautocomplete/jquery.autocomplete.min.js'); ?>"></script>
+        <script src="<?php echo base_url($user_defined . '/products/products.js'); ?>"></script>
+<?php endif;?>
+<?php if ($this->router->fetch_class() == 'sales'):?>
+        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table.min.js'); ?>"></script>
+        <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-bootstrap.js'); ?>"></script>
+        <script src="<?php echo base_url($user_defined . '/sales/sales.js'); ?>"></script>
 <?php endif;?>
     </body>
 </html>

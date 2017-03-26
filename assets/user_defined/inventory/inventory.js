@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('table.display').addClass("table-bordered");
     $('table.display').addClass("table-hover");
     $('table.display').addClass("table-responsive");
-    
+    $('table.display').addClass("table-striped");
     var d = new Date();
 
 	var month = d.getMonth()+1;
@@ -14,5 +14,6 @@ $(document).ready(function() {
 	    (month<10 ? '0' : '') + month + '-' +
 	    (day<10 ? '0' : '') + day;
 
-    $('#inventory-date').val(output);
+    $('#date-from').val(output);
+    $('#date-to').val(output);
 } );

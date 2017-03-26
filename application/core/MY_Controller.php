@@ -21,6 +21,7 @@ class MY_Controller extends CI_Controller
         $this->data['charset']        = $this->config->item('charset');
         $this->data['frameworks_dir'] = $this->config->item('frameworks_dir');
         $this->data['plugins_dir']    = $this->config->item('plugins_dir');
+        $this->data['user_defined']   = $this->config->item('user_defined');
         $this->data['avatar_dir']     = $this->config->item('avatar_dir');
 
         /* Any mobile device (phones or tablets) */

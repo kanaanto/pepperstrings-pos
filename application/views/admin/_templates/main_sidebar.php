@@ -49,6 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-tasks"></i> <span>Products</span>
                             </a>
                         </li>
+                        <li class="<?=active_link_controller('sales')?>">
+                            <a href="<?php echo site_url('admin/sales'); ?>">
+                                <i class="fa fa-tags"></i> <span>Sales</span>
+                            </a>
+                        </li>
                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
                         <li class="<?=active_link_controller('users')?>">
                             <a href="<?php echo site_url('admin/users'); ?>">
