@@ -55,3 +55,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php else: ?>
         <div class="wrapper">
 <?php endif; ?>
+
+<?php if ($this->router->fetch_class() == 'inventory'):?>
+        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datatable/data-table.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url($user_defined . '/inventory/inventory.css'); ?>">
+<?php endif; ?>
+<?php if ($this->router->fetch_class() == 'products'):?>
+        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datatable/data-table.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url($user_defined . '/products/products.css'); ?>">
+<?php endif; ?>
+<?php if ($this->router->fetch_class() == 'sales'):?>
+        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datatable/data-table.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url($user_defined . '/sales/sales.css'); ?>">
+<?php endif; ?>

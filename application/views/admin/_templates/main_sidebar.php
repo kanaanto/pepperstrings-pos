@@ -44,9 +44,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-cubes"></i> <span>Inventory</span>
                             </a>
                         </li>
-						<li class="<?=active_link_controller('inventory')?>">
-                            <a href="<?php echo site_url('admin/inventory'); ?>">
+						<li class="<?=active_link_controller('products')?>">
+                            <a href="<?php echo site_url('admin/products'); ?>">
                                 <i class="fa fa-tasks"></i> <span>Products</span>
+                            </a>
+                        </li>
+                        <li class="<?=active_link_controller('sales')?>">
+                            <a href="<?php echo site_url('admin/sales'); ?>">
+                                <i class="fa fa-tags"></i> <span>Sales</span>
                             </a>
                         </li>
                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
