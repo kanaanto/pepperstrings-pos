@@ -35,7 +35,16 @@ class Orders extends Admin_Controller {
 
 
             /* Load Template */
-            $this->template->admin_render('admin/orders/index', $this->data);
+            
+			
+			/* Add additional views (modals) */
+			$this->data['add_order_modal'] = $this->load->view('admin/orders/add_order_modal', NULL, TRUE);
+			$this->data['bill_out_modal'] = $this->load->view('admin/orders/bill_out_modal', NULL, TRUE);
+			$this->data['move_table_modal'] = $this->load->view('admin/orders/move_table_modal', NULL, TRUE);
+			$this->data['delete_order_modal'] = $this->load->view('admin/orders/delete_order_modal', NULL, TRUE);
+			
+			$this->template->admin_render('admin/orders/index', $this->data);
+			//$this->load->view('admin/orders/index', $data);
         }
 	}
 }
