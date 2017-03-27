@@ -15,7 +15,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <!--Box-->
                             <div class = "box box-danger">
                                 <div class = "box-header with-border">
-                                    <a href = "products/add" class = "btn btn-large btn-success">Add Product</a>
+                                    <a href = "products/add" class = "btn btn-large btn-success">
+                                        <i class = "fa fa-plus"></i> Add Product
+                                    </a>
                                 </div>
                                 <div class = "box-body">
                                     <!--Nav tabs-->
@@ -52,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td>Mi Ultimo Adios</td>
                                                                     <td>Extra Strong Blends</td>
                                                                     <td>50</td>
-                                                                    <td>Available</td>
+                                                                    <td><span class = "label label-success">Available</span></td>
                                                                     <td>Glass</td>
                                                                     <td>Tequila, Salt, Lemon</td>
                                                                     <td><a href = "products/add"><span class = "fa fa-edit"></span></a></td>
@@ -61,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td>Item 2</td>
                                                                     <td>Extra Strong Blends</td>
                                                                     <td>50</td>
-                                                                    <td>Available</td>
+                                                                    <td><span class = "label label-success">Available</span></td>
                                                                     <td>Glass</td>
                                                                     <td>Tequila, Salt, Lemon</td>
                                                                     <td><a href = "products/add"><span class = "fa fa-edit"></span></a></td>
@@ -105,7 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td>Mi Ultimo Adios</td>
                                                                     <td>Extra Strong Blends</td>
                                                                     <td>50</td>
-                                                                    <td>Available</td>
+                                                                    <td><span class = "label label-success">Available</span></td>
                                                                     <td>Glass</td>
                                                                     <td>Tequila, Salt, Lemon</td>
                                                                     <td><a href = "#"><span class = "fa fa-edit"></span></a></td>
