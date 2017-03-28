@@ -10,6 +10,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </section>
 
                 <section class="content">
+				<!--div class="alert alert-error">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <h4>Error!</h4>
+				  TO DO: Load error messages
+				</div-->
+				<!--div class="alert alert-success">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <h4>Success!</h4>
+				  TO DO: Load success messages
+				</div-->
                     <div class="row">
 					                        <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box bg-aqua">
@@ -20,13 +30,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                         </div>
-						
+
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box bg-green">
                                 <span class="info-box-icon"><i class="fa fa-plus"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Vacant</span>
                                     <span class="info-box-number">4</span>
+									
                                 </div>
                             </div>
                         </div>
@@ -51,11 +62,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                         </div>
+						<div class="col-xs-12">
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#add_table_modal"><i class="fa fa-plus"></i>&nbsp;Add New Table</button>
+							</div>
+						</div>
                     </div>
 
-                    <div class="row">
-                       
-
+						<br/>
+					
+                    <div class="row"><!-- Table List -->
                         <div class="col-md-6">
                             <div class="box box-warning">
                                 <div class="box-header with-border">
@@ -78,6 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<th>Amt</th>
 													<th>Status</th>
 													<th>Action</th>
+													<th>Emp No.</th>
 												  </tr>
 											  </thead>
 											  <tbody>
@@ -92,6 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<a href="#"><span class = "fa fa-edit"></span></a>&nbsp;&nbsp;
 														<a href="#delete_order_modal" data-toggle="modal"><span class = "fa fa-trash"></span></a>
 													</td>
+													<td><a href="#" title="Kana Antonio">E001</a></td>
 												  </tr>
 												  <tr>
 													<td>2</td>
@@ -100,6 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<td>158</td>
 													<td><span class="label label-success">Paid</span></td>
 													<td><a href="#"><span class = "fa fa-edit"></span></a><a href="#">&nbsp;&nbsp;<span class = "fa fa-trash"></span></a></td>
+													<td>E001</td>
 												  </tr>
 												  <tr>
 													<td>2</td>
@@ -108,6 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<td>640</td>
 													<td><span class="label label-success">Paid</span></td>
 													<td><a href="#"><span class = "fa fa-edit"></span></a><a href="#">&nbsp;&nbsp;<span class = "fa fa-trash"></span></a></td>
+													<td>E003</td>
 												  </tr>
 												  <tr>
 													
@@ -120,6 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<a href="#"><span class = "fa fa-edit"></span></a>&nbsp;&nbsp;
 														<a href="#delete_order_modal" data-toggle="modal"><span class = "fa fa-trash"></span></a>
 													</td>
+													<td>E002</td>
 												  </tr>
 											  </tbody>
 											</table>
@@ -145,21 +166,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                         </div>
-						<div class="col-md-6">
-                            <div class="box box-success">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Table 2A</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-									<div class="box-tools pull-left">
-										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#add_order_modal"><i class="fa fa-plus"></i>&nbsp;Add Order</button>
-									</div>
-                                </div>
-                            </div>
-                        </div>
+
 						<div class="col-md-6">
                             <div class="box box-danger">
                                 <div class="box-header with-border">
@@ -183,6 +190,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<th>Amt</th>
 													<th>Status</th>
 													<th>Action</th>
+													<th>Emp No.</th>
 												  </tr>
 											  </thead>
 											  <tbody>
@@ -197,6 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<a href="#"><span class = "fa fa-edit"></span></a>&nbsp;&nbsp;
 														<a href="#delete_order_modal" data-toggle="modal"><span class = "fa fa-trash"></span></a>
 													</td>
+													<td>E003</td>
 												  </tr>
 												  <tr>
 													<td>2</td>
@@ -205,6 +214,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<td>158</td>
 													<td><span class="label label-danger">Unpaid</span></td>
 													<td><a href="#"><span class = "fa fa-edit"></span></a><a href="#">&nbsp;&nbsp;<span class = "fa fa-trash"></span></a></td>
+													<td>E003</td>
 												  </tr>
 												  <tr>
 													<td>1</td>
@@ -216,6 +226,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<a href="#"><span class = "fa fa-edit"></span></a>&nbsp;&nbsp;
 														<a href="#delete_order_modal" data-toggle="modal"><span class = "fa fa-trash"></span></a>
 													</td>
+													<td>E004</td>
 												  </tr>
 											  </tbody>
 											</table>
@@ -244,6 +255,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                         </div>
+						<?php foreach ($table_list->result() as $row) { ?>
+						<div class="col-md-6">
+                            <div class="box box-success">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><?=$row->table_id;?></h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+									<div class="box-tools pull-left">
+										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#add_order_modal"><i class="fa fa-plus"></i>&nbsp;Add Order</button>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+						<?php } ?>
+						
 						<!--div class="col-md-6">
                             <div class="box box-warning">
                                 <div class="box-header with-border">
@@ -266,6 +295,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </section>
 				<!-- Add order modal --><?=$add_order_modal?>
 				<!-- Bill out modal --><?=$bill_out_modal?>
-				<!-- Move to another table modal --><?=$move_table_modal?>
+				<!-- Move to another table modal --><?=$add_move_table_modal?>
 				<!-- Move to another table modal --><?=$delete_order_modal?>
             </div>
