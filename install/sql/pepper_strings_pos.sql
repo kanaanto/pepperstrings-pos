@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2017 at 08:38 PM
+-- Generation Time: Mar 28, 2017 at 11:31 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -70,6 +70,20 @@ INSERT INTO `groups` (`id`, `name`, `description`, `bgcolor`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inventories`
+--
+
+CREATE TABLE `inventories` (
+  `inventory_id` int(11) NOT NULL,
+  `inv_name` varchar(50) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `min_value` int(11) NOT NULL,
+  `is_kitchen` int(1) NOT NULL COMMENT '"1" for yes; "0" for no'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login_attempts`
 --
 
@@ -79,6 +93,60 @@ CREATE TABLE `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `prod_id` int(11) NOT NULL,
+  `payment_type` varchar(3) NOT NULL COMMENT '"c" for Cash, "sd" for Salary Deduction; "oth" for On the House',
+  `price` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_slip` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL,
+  `prod_type_id` int(11) NOT NULL,
+  `prod_name` varchar(50) NOT NULL,
+  `unit` varchar(50) NOT NULL,
+  `is_available` int(1) NOT NULL COMMENT '"1" for yes, "0" for no'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prod_inv`
+--
+
+CREATE TABLE `prod_inv` (
+  `inventory_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prod_types`
+--
+
+CREATE TABLE `prod_types` (
+  `prod_type_id` int(11) NOT NULL,
+  `prod_type_name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -97,6 +165,42 @@ CREATE TABLE `public_preferences` (
 
 INSERT INTO `public_preferences` (`id`, `transition_page`) VALUES
 (1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `sales_id` int(11) NOT NULL,
+  `table_id` int(11) NOT NULL,
+  `order_slip` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `total_amt` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tables`
+--
+
+CREATE TABLE `tables` (
+  `table_id` varchar(20) NOT NULL,
+  `is_paid` int(1) NOT NULL COMMENT '"1" for yes; "0" for no',
+  `is_occupied` int(1) NOT NULL COMMENT '"1" for yes; "0" for no'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tables`
+--
+
+INSERT INTO `tables` (`table_id`, `is_paid`, `is_occupied`) VALUES
+('Table_L_001', 0, 0),
+('Table_L_002', 0, 0),
+('Table_U_001', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -127,8 +231,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1489940039, NULL, 1, 'Yo', 'Admin'),
-(2, '::1', 'kana', '$2y$08$yEVk/iWDQcaAuUzf9LDLy.2xeJCM.RikOYzoqtS3IJ.HpkwkZ9heK', NULL, 'kana@kana.com', NULL, NULL, NULL, NULL, 1489949651, NULL, 1, 'Kana ', 'Anto');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, 'YIMxPZPJwKy8GKflmcqy0u', 1489940039, 1490721990, 1, 'Admin', 'istrator'),
+(2, '::1', '', '$2y$08$yEVk/iWDQcaAuUzf9LDLy.2xeJCM.RikOYzoqtS3IJ.HpkwkZ9heK', NULL, 'kana@kana.com', NULL, NULL, NULL, NULL, 1489949651, NULL, 1, 'Kana ', 'Anto');
 
 -- --------------------------------------------------------
 
@@ -173,10 +277,46 @@ ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `prod_inv`
+--
+ALTER TABLE `prod_inv`
+  ADD PRIMARY KEY (`inventory_id`,`product_id`);
+
+--
+-- Indexes for table `prod_types`
+--
+ALTER TABLE `prod_types`
+  ADD PRIMARY KEY (`prod_type_id`);
+
+--
 -- Indexes for table `public_preferences`
 --
 ALTER TABLE `public_preferences`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`sales_id`);
+
+--
+-- Indexes for table `tables`
+--
+ALTER TABLE `tables`
+  ADD PRIMARY KEY (`table_id`);
 
 --
 -- Indexes for table `users`
