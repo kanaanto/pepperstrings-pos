@@ -40,6 +40,7 @@ class Orders extends Admin_Controller {
 			$this->data['delete_order_modal'] = $this->load->view('admin/orders/delete_order_modal', NULL, TRUE);
 			/* Load Template */			
 			$this->template->admin_render('admin/orders/index', $this->data);
+			
         }
 	}
 	

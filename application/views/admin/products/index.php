@@ -50,33 +50,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>Mi Ultimo Adios</td>
-                                                                    <td>Extra Strong Blends</td>
-                                                                    <td>50</td>
-                                                                    <td><span class = "label label-success">Available</span></td>
-                                                                    <td>Glass</td>
-                                                                    <td>Tequila, Salt, Lemon</td>
-                                                                    <td><a href = "products/add"><span class = "fa fa-edit"></span></a></td>
-                                                                </tr>
-                                                                 <tr>
-                                                                    <td>Item 2</td>
-                                                                    <td>Extra Strong Blends</td>
-                                                                    <td>50</td>
-                                                                    <td><span class = "label label-success">Available</span></td>
-                                                                    <td>Glass</td>
-                                                                    <td>Tequila, Salt, Lemon</td>
-                                                                    <td><a href = "products/add"><span class = "fa fa-edit"></span></a></td>
-                                                                </tr>
+                                                                <?php foreach ($products_list_with_type->result() as $row) { ?>
+                                                                    <tr>
+                                                                        <td><?=$row->prod_name?></td>
+                                                                        <td><?=$row->prod_type_name?></td>
+                                                                        <td><?=$row->price?></td>
+                                                                        <?php if($row->is_available == 1): ?>
+                                                                            <td><span class = "label label-success">Available</span></td>
+                                                                        <?php else: ?>
+                                                                            <td><span class = "label label-danger">Unavailable</span></td>
+                                                                        <?php endif; ?>
+                                                                        <td><?=$row->unit?></td>
+                                                                        <td>lorem ipsum</td>
+                                                                        <td><a href = "products/edit/<?=$row->product_id?>"><span class = "fa fa-edit"></span></a></td>
+                                                                    </tr>
+                                                                <?php } ?>
                                                             </tbody>
                                                             <tfoot>
-                                                                <th>Name</th>
+                                                                <tr>
+                                                                    <th>Name</th>
                                                                     <th>Menu Group</th>
-                                                                    <th>Status</th>
                                                                     <th>Price</th>
+                                                                    <th>Status</th>
                                                                     <th>Unit</th>
                                                                     <th>Inventory Items</th>
                                                                     <th>Action</th>
+                                                                </tr>
                                                             </tfoot>
                                                         </table>
                                                     </div>
@@ -103,24 +102,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>Mi Ultimo Adios</td>
-                                                                    <td>Extra Strong Blends</td>
-                                                                    <td>50</td>
-                                                                    <td><span class = "label label-success">Available</span></td>
-                                                                    <td>Glass</td>
-                                                                    <td>Tequila, Salt, Lemon</td>
-                                                                    <td><a href = "#"><span class = "fa fa-edit"></span></a></td>
-                                                                </tr>
+                                                               <?php foreach ($products_list_with_type->result() as $row) { ?>
+                                                                    <tr>
+                                                                        <td><?=$row->prod_name?></td>
+                                                                        <td><?=$row->prod_type_name?></td>
+                                                                        <td><?=$row->price?></td>
+                                                                        <?php if($row->is_available == 1): ?>
+                                                                            <td><span class = "label label-success">Available</span></td>
+                                                                        <?php else: ?>
+                                                                            <td><span class = "label label-danger">Unavailable</span></td>
+                                                                        <?php endif; ?>
+                                                                        <td><?=$row->unit?></td>
+                                                                        <td>lorem ipsum</td>
+                                                                        <td><a href = "products/edit/<?=$row->product_id?>"><span class = "fa fa-edit"></span></a></td>
+                                                                    </tr>
+                                                                <?php } ?>
                                                             </tbody>
                                                             <tfoot>
-                                                                <th>Name</th>
-                                                                <th>Menu Group</th>
-                                                                <th>Price</th>
-                                                                <th>Status</th>
-                                                                 <th>Unit</th>
-                                                                <th>Inventory Items</th>
-                                                                <th>Action</th>
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Menu Group</th>
+                                                                    <th>Price</th>
+                                                                    <th>Status</th>
+                                                                    <th>Unit</th>
+                                                                    <th>Inventory Items</th>
+                                                                    <th>Action</th>
+                                                                </tr>
                                                             </tfoot>
                                                         </table>
                                                     </div>

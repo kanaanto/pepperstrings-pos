@@ -20,6 +20,6 @@ class Tables_model extends CI_Model {
     public function add_table($data)
 	{
 		$this->db->insert('tables',$data);
-    }
+    } 
 
 }
