@@ -166,7 +166,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                         </div>
-
+ 
 						<div class="col-md-6">
                             <div class="box box-danger">
                                 <div class="box-header with-border">

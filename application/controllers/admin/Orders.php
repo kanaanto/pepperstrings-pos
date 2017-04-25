@@ -53,7 +53,7 @@ class Orders extends Admin_Controller {
 		);
 		if ($this->form_validation->run() != FALSE && isset($_POST) && ! empty($_POST)){
 			//Transfering data
-			$this->tables_model->add_table($data);
+			$this->tables_model->add_table($data); 
 			//Reloading view
 			//$this->index(); 
 			// TO DO: Add success message and display on admin/orders banner

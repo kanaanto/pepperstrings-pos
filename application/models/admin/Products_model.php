@@ -16,10 +16,24 @@ class Products_model extends CI_Model {
 
     }
 
-    public function get_prod_with_type(){
-        $this->db->select('products.*, prod_types.prod_type_name');
-        $this->db->from('products');
-        $this->db->join('prod_types', 'prod_types.prod_type_id = products.prod_type_id', 'left');
+    public function get_bar_prods(){
+        $this->db->select('*, GROUP_CONCAT(aff_inv) AS inv_name_qty');
+        $this->db->from('prod_inventory');
+        
+        $this->db->where('is_kitchen', '0');
+        $this->db->group_by("product_id");
+        $this->db->order_by('prod_type_name ASC', 'unit DESC');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function get_kitchen_prods(){
+        $this->db->select('*, GROUP_CONCAT(aff_inv) AS inv_name_qty');
+        $this->db->from('prod_inventory');
+        
+        $this->db->where('is_kitchen', '1');
+        $this->db->group_by("product_id");
+        $this->db->order_by('prod_type_name ASC', 'unit DESC');
         $query = $this->db->get();
         return $query;
     }
@@ -37,12 +51,23 @@ class Products_model extends CI_Model {
         return $query;
     }
 
-    public function add_products($data)
+    public function insert_product_db($data)
 	{
 		$this->db->insert('products',$data);
+        return $this->db->insert_id();
     } 
 
-    public function update_products($data){
+    public function update_product_db($id, $data){
+        $this->db->set($data);
+        $this->db->where('product_id', $id);
+        $this->db->update('products');
+    }
 
+    public function get_product_details($id){
+        $this->db->select('*');
+        $this->db->from('products');
+        $this->db->where('product_id', $id);
+        $query = $this->db->get();
+        return $query->row();
     }
 }
