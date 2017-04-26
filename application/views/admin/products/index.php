@@ -119,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <?php endif; ?>
                                                             <td id = "#inv_name_qty-<?=$row->product_id?>"><?=$row->inv_name_qty?></td>
                                                             <td>
-                                                                <a href = "#" data-toggle="modal" data-target="#edit_product_modal" id = "edit-<?=$row->product_id?>" class = "edit-clickable">
+                                                                <a href = "products/edit_product?prod_id=<?=$row->product_id?>">
                                                                     <span class = "fa fa-edit"></span>
                                                                 </a>
                                                             </td>

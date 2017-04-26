@@ -16,4 +16,24 @@ $(document).ready(function() {
 
     $('#date-from').val(output);
     $('#date-to').val(output);
-} );
+
+    $('tbody td a:first-child').on('click', function(event){
+        var id = $(this).attr('id').split('-')[1];
+        var full_url = window.location.origin + "/admin/sales/get_sales_preview?sales_id="+id;
+        $.ajax({
+            url:full_url,
+            dataType:"JSON",
+            type:"GET",
+            success:function(result){
+                $('#preview-body').html(result.previewHtml);
+            }
+        });
+    });
+
+    function get_preview(element){
+        alert('yup');
+
+    }
+   
+
+});

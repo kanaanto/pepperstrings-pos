@@ -45,20 +45,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>6:30pm | 10:30pm</td>
-                                                        <td>#6</td>
-                                                        <td>10</td>
-                                                        <td>500 pesos</td>
-                                                        <td>
-                                                            <a href = "#" data-toggle="collapse" data-target = "#preview-content">
-                                                                <span class = "fa fa-eye"></span>
-                                                            </a>   |    
-                                                            <a href = "#">
-                                                                <span class = "fa fa-edit"></span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php foreach($sales_details->result() as $row): ?>
+                                                        <tr>
+                                                            <td><?=$row->time?></td>
+                                                            <td>#<?=$row->table_id?></td>
+                                                            <td><?=$row->total_items?></td>
+                                                            <td class = "priceField"><?=$row->total_amt?></td>
+                                                            <td>
+                                                                <a href = "#" id = "sales_id-<?=$row->sales_id?>">
+                                                                    <span class = "fa fa-eye"></span>
+                                                                </a>   |    
+                                                                <a href = "#">
+                                                                    <span class = "fa fa-edit"></span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -69,48 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class = "box-header with-border">
                                             <h3 class = "box-title">Preview</h3>
                                         </div>
-                                        <div class = "box-solid collapse" id = "preview-content">
-                                            <h4><b>Table Details</b></h4>
-                                            <p><span class = "label label-primary">Date:</span> 03/26/2017</p>
-                                            <p><span class = "label label-info">Time:</span> 6:30pm-10:30pm</p>
-                                            <hr>
-                                            <table class = "table table-hover table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Qty</th>
-                                                        <th>Order</th>
-                                                        <th class = "pull-right">Price</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Sisig</td>
-                                                        <td class = "pull-right">100</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>SML</td>
-                                                        <td class = "pull-right">500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>RH</td>
-                                                        <td class = "pull-right">400</td>
-                                                    </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td class = "pull-right">
-                                                            <span class = "label label-danger">Total:</span><b> 1000</b>
-                                                        </td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                            
-                                            
+                                        <div class = "box-body" id = "preview-body">
                                         </div>
                                     </div>
                                 </div>
