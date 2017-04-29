@@ -42,4 +42,12 @@ class Inventory_model extends CI_Model {
     public function update_inventory_item($data){
         $this->db->replace("inventories", $data);
     }
+
+    public function update_inventory_end($data){
+
+        $this->db->set('inv_end', $data['qty'] + $data['inv_in'] - $data['inv_out']);
+        $this->db->where('inventory_id', $data['inventory_id']);
+        $this->db->update('inventories');
+    
+    }
 }

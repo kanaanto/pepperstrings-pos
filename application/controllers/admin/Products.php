@@ -72,28 +72,48 @@ class Products extends Admin_Controller {
 
     /* Add Product Logic*/
     public function insert_product(){
-        $this->form_validation
-            ->set_rules($this->input->post("prod_name"),"New Product", "trim|required");
-        $data = array(
-            
-            "prod_name"     => $this->input->post("prod_name"),
-            "prod_type_id"  => $this->input->post("prod_menu_group"),
-            "is_available"  => $this->input->post("prod_is_available"),
-            "price"         => $this->input->post("prod_price"),
-            "unit"          => $this->input->post("prod_unit")
-        );
-
-        $inserted_product_id = $this->products_model->insert_product_db($data);
-        
-        foreach($this->input->post("prod_affected_inv_id") as $key => $inventory_id){
-            $prod_inv = array(
-                "inventory_id"  => $inventory_id,
-                "product_id"    => $inserted_product_id,
-                "qty"           => $this->input->post("prod_affected_qty")[$key]
-            );
-            $this->products_inventory_model->add_products_inventory($prod_inv);
+         if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
         }
-        redirect(site_url('/admin/products'));
+        else
+        {
+
+            $this->form_validation
+                ->set_rules("prod_name","Product Name", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_menu_group","Menu Group", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_is_available","Availability", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_price","Price", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_unit","Unit", "trim|required");
+
+            if($this->form_validation->run() == TRUE){
+                    $data = array(
+                    
+                    "prod_name"     => $this->input->post("prod_name"),
+                    "prod_type_id"  => $this->input->post("prod_menu_group"),
+                    "is_available"  => $this->input->post("prod_is_available"),
+                    "price"         => $this->input->post("prod_price"),
+                    "unit"          => $this->input->post("prod_unit")
+                );
+
+                $inserted_product_id = $this->products_model->insert_product_db($data);
+                
+                foreach($this->input->post("prod_affected_inv_id") as $key => $inventory_id){
+                    $prod_inv = array(
+                        "inventory_id"  => $inventory_id,
+                        "product_id"    => $inserted_product_id,
+                        "qty"           => $this->input->post("prod_affected_qty")[$key]
+                    );
+                    $this->products_inventory_model->add_products_inventory($prod_inv);
+                }
+            }
+            redirect(site_url('/admin/products'));
+            
+        }
     }
 
     /* Edit Product Display*/
@@ -127,27 +147,47 @@ class Products extends Admin_Controller {
 
     /* Edit Product Logic*/
     public function update_product(){
-        $this->form_validation
-            ->set_rules($this->input->post("prod_is_kitchen"),"New Product", "trim|required");
-        $id = $this->input->post("product_id");
-        $data = array(
-            "prod_name"     => $this->input->post("prod_name"),
-            "prod_type_id"  => $this->input->post("prod_menu_group"),
-            "is_available"  => $this->input->post("prod_is_available"),
-            "price"         => $this->input->post("prod_price"),
-            "unit"          => $this->input->post("prod_unit")
-        );
-
-        $updated_product_id = $this->products_model->update_product_db($id, $data);
-        
-        foreach($this->input->post("prod_affected_inv_id") as $key => $inventory_id){
-            $prod_inv = array(
-                "inventory_id"  => $inventory_id,
-                "product_id"    => $id,
-                "qty"           => $this->input->post("prod_affected_qty")[$key]
-            );
-            $this->products_inventory_model->update_products_inventory($prod_inv);
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
         }
-        redirect(site_url('/admin/products'));
+        else
+        {
+            $this->form_validation
+                ->set_rules("prod_name","Product Name", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_menu_group","Menu Group", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_is_available","Availability", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_price","Price", "trim|required");
+            $this->form_validation
+                ->set_rules("prod_unit","Unit", "trim|required");
+
+            if($this->form_validation->run() == TRUE){
+                $id = $this->input->post("product_id");
+                $data = array(
+                    "prod_name"     => $this->input->post("prod_name"),
+                    "prod_type_id"  => $this->input->post("prod_menu_group"),
+                    "is_available"  => $this->input->post("prod_is_available"),
+                    "price"         => $this->input->post("prod_price"),
+                    "unit"          => $this->input->post("prod_unit")
+                );
+
+                $updated_product_id = $this->products_model->update_product_db($id, $data);
+                
+                foreach($this->input->post("prod_affected_inv_id") as $key => $inventory_id){
+                    $prod_inv = array(
+                        "inventory_id"  => $inventory_id,
+                        "product_id"    => $id,
+                        "qty"           => $this->input->post("prod_affected_qty")[$key]
+                    );
+                    $this->products_inventory_model->update_products_inventory($prod_inv);
+                }
+            } 
+
+            
+            redirect(site_url('/admin/products'));
+        }
     }
 }

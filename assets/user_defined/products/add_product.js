@@ -2,7 +2,7 @@ $(document).ready(function() {
   var lookup_values;  
   var auto_comp;
   var base_url = window.location.origin;
-  setAutoComplete();
+  
 
   var added_fields_num = 1;
   $("#add-affected-inv").on('click', function(){
@@ -42,19 +42,43 @@ $(document).ready(function() {
   });
 
   //Set up Autocompte to existinf affected inventories
-
+  var lookup_values;
+  $.ajax({
+    url:base_url+"/admin/inventory/get_inventory_items_autocomplete",
+    dataType:'JSON',
+    type:'GET',
+    success:function(val){
+      lookup_values = val;
+      setAutoComplete();
+     
+      
+    }
+  });
  
   //Autocomplete for Affected inventories
   function setAutoComplete(){
     auto_comp = {
-      serviceUrl:base_url+"/admin/inventory/get_inventory_items_autocomplete",
-      /*lookup: function (query, done) {
-      var result = {
-          suggestions: lookUpValues
+      //serviceUrl:base_url+"/admin/inventory/get_inventory_items_autocomplete",
+      lookup: lookup_values,
+      /*function (query, done) {
+        var result = {
+          suggestions: lookup_values
         };
-
+        
         done(result);
       },*/
+      
+     transformResult: function(response) {
+        return {
+            suggestions: $.map(response.result, function(dataItem) {
+                //return { value: dataItem.data, data: dataItem.value };
+              return { value: dataItem.value, data: dataItem.data };
+            })  
+        };
+       },
+      onHint: function (hint) {
+            $('#autocomplete-ajax-x').val(hint);
+        },
 
 
       onSelect: function (suggestion) {
@@ -62,11 +86,8 @@ $(document).ready(function() {
         $('#invId-'+id).val(suggestion.data);
       }    
     };
-    $('.autocomplete').autocomplete(auto_comp);
-  }
 
-  function addNewAffectedField(){
-
+     $('.autocomplete').autocomplete(auto_comp);
   }
   
     

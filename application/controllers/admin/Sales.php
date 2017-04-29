@@ -13,7 +13,7 @@ class Sales extends Admin_Controller {
         $this->data['pagetitle'] = $this->page_title->show();
 
         /* Breadcrumbs :: Common */
-        $this->breadcrumbs->unshift(1, lang('menu_inventory'), 'admin/sales');
+        $this->breadcrumbs->unshift(1, lang('menu_sales'), 'admin/sales');
 
         /* Load Models*/
         $this->load->model('admin/sales_model');
@@ -41,11 +41,39 @@ class Sales extends Admin_Controller {
         }
 	}
 
-    public function get_sales_preview(){
-        $data['preview_data'] = $this->sales_model->get_sales_preview($this->input->get('sales_id'));
-        $theHTMLResponse = $this->load->view('admin/sales/preview_table', $data, true);
+    public function get_sales_details(){
 
-        $this->output->set_content_type('application/json');
-        $this->output->set_output(json_encode(array('previewHtml'=> $theHTMLResponse)));       
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+        else
+        {
+            $data['sales_details'] = $this->sales_model->get_sales_details_date($this->input->get('date_from'), $this->input->get('date_to'));
+            $theHTMLResponse = $this->load->view('admin/sales/sales_details', $data, true);
+
+            //$this->output->set_content_type('application/json');
+            //$this->output->set_output(json_encode(array('salesDetailsHtml'=> $theHTMLResponse)));     
+            $this->output->set_content_type('application/text');
+            $this->output->set_output($theHTMLResponse);
+        }
+
+    }
+
+    public function get_sales_preview(){
+    
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+        else
+        {
+            $data['preview_data'] = $this->sales_model->get_sales_preview($this->input->get('sales_id'));
+            $theHTMLResponse = $this->load->view('admin/sales/preview_table', $data, true);
+
+            $this->output->set_content_type('application/json');
+            $this->output->set_output(json_encode(array('previewHtml'=> $theHTMLResponse)));   
+        }    
+    
     }
 }

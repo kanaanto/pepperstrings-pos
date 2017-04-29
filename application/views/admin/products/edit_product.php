@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <?=$prod_details->is_available == '1' ? 'selected':''?>>
                                                 Available
                                             </option>
-                                            <option value = "1" 
+                                            <option value = "0" 
                                                 <?=$prod_details->is_available == '0' ? 'selected':''?>>
                                                 Unavailable
                                             </option>
@@ -87,6 +87,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             value = "<?=$prod_details->price?>" name = "prod_price" placeholder = "Price">
                                     </div>
                                 </div>
+                                <?php if(count($prod_inventory->result()) == 0):?>
+                                    <div class = "form-group">
+                                        <label class = "control-label col-sm-2" for = "inventory_item">Affected Inventory</label>
+                                        <div class = "col-sm-4">
+                                            <input type = "hidden" name = "prod_affected_inv_id[]" id = "invId-0">
+                                            <input type = "text" class = "form-control autocomplete" name = "prod_affected_inv[]" 
+                                            id = "inventoryItem-0" placeholder = "Inventory Name">
+                                        </div>
+                                        <label class = "control-label col-sm-2" for = "quantity">Quantity</label>
+                                        <div class = "col-sm-2">
+                                            <input type = "number" class = "form-control" id = "quantity" name = "prod_affected_qty[]">
+                                        </div>
+                                        <div class = "col-sm-2">
+                                            <button type = "button" class = "btn btn-danger" id = "add-affected-inv">Add Field</button>
+                                        </div>
+                                    </div>
+                                <?php endif;?>
                                 <?php foreach($prod_inventory->result() as $key=>$row):?>
                                     <?php if($key=='0'):?>
                                         <div class = "form-group">

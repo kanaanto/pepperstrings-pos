@@ -19,6 +19,7 @@ $lang['menu_orders']             			= 'Orders';
 $lang['menu_tables']             			= 'Tables';
 $lang['menu_inventory']             		= 'Inventory';
 $lang['menu_products']             			= 'Products';
+$lang['menu_sales']             			= 'Sales';
 $lang['menu_reports']             			= 'Reports';
 
 $lang['menu_administration']             	= 'Administration';

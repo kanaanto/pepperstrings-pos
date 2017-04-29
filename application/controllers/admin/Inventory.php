@@ -49,51 +49,86 @@ class Inventory extends Admin_Controller {
 	}
 
     public function add_inventory_item(){
-        $this->form_validation
-            ->set_rules($this->input->post("new_item_name"),"New Item", "trim|required");
-        $data = array(
-            "inv_name"      => $this->input->post("new_item_name"),
-            "qty"           => $this->input->post("new_item_qty"),
-            "min_value"     => $this->input->post("new_item_min_value"),
-            "is_kitchen"    => $this->input->post("new_item_in_kitchen")
-        );
-        //if ($this->form_validation->run() != FALSE && isset($_POST) && ! empty($_POST)){
-            $this->inventory_model->add_inventory_item($data);
-        //}
-        //else{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+        else
+        {
+            $this->form_validation
+                ->set_rules("new_item_name","Item Name", "trim|required");
+            $this->form_validation
+                ->set_rules("new_item_qty","Item Quantity", "trim|required");
+            $this->form_validation
+                ->set_rules("new_item_min_value","Minimum Value", "trim|required");
+            $this->form_validation
+                ->set_rules("new_item_in_kitchen","Kitchen", "trim|required");
 
-        //}
-        
-        redirect(site_url('/admin/inventory'));
+            if($this->form_validation->run() == TRUE){
+                $data = array(
+                    "inv_name"      => $this->input->post("new_item_name"),
+                    "qty"           => $this->input->post("new_item_qty"),
+                    "min_value"     => $this->input->post("new_item_min_value"),
+                    "is_kitchen"    => $this->input->post("new_item_in_kitchen")
+                );
+                //if ($this->form_validation->run() != FALSE && isset($_POST) && ! empty($_POST)){
+                    $this->inventory_model->add_inventory_item($data);
+                //}
+                //else{
+
+                //}   
+            }
+            
+            redirect(site_url('/admin/inventory'));
+        }
     }
 
     public function update_inventory_item(){
-        $this->form_validation
-                ->set_rules($this->input->post("item_id"), "Edit ID", "trim|required");
-        $data = array(
-                "inventory_id"  => $this->input->post("item_id"),
-                "inv_name"      => $this->input->post("item_name"),
-                "qty"       => $this->input->post("item_beg"),
-                "inv_in"        => $this->input->post("item_in"),
-                "inv_out"       => $this->input->post("item_out")
-        );
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+        else
+        {
+            $this->form_validation
+                ->set_rules("item_id","Item ID", "trim|required");
+            $this->form_validation
+                ->set_rules("item_name","Item Name", "trim|required");
+            $this->form_validation
+                ->set_rules("item_beg","Item Beginning", "trim|required");
+            $this->form_validation
+                ->set_rules("item_in","Item In", "trim|required");
+            $this->form_validation
+                ->set_rules("item_out","Item Out", "trim|required");
 
-        //if ($this->form_validation->run() != FALSE && isset($_POST) && ! empty($_POST)){
-            $this->inventory_model->update_inventory_item($data);
-        //}
-        //else{
+            if($this->form_validation->run() == TRUE){
+                $data = array(
+                        "inventory_id"  => $this->input->post("item_id"),
+                        "inv_name"      => $this->input->post("item_name"),
+                        "qty"           => $this->input->post("item_beg"),
+                        "inv_in"        => $this->input->post("item_in"),
+                        "inv_out"       => $this->input->post("item_out")
+                );
+
+                //if ($this->form_validation->run() != FALSE && isset($_POST) && ! empty($_POST)){
+                    $this->inventory_model->update_inventory_item($data);
+                    $this->inventory_model->update_inventory_end($data);
+                //}
+                //else{
+                    
+                //}
+            }
             
-        //}
-        
-        redirect(site_url('/admin/inventory'));
+            redirect(site_url('/admin/inventory'));
+        }
 
     }
 
     public function get_inventory_items_autocomplete(){
         $list = $this->inventory_model->get_inventory_autocomplete($this->input->get("query"));
         header('Content-Type: application/json');
-        print json_encode(array("suggestions"=>$list->result()));
-        //print json_encode($list->result());
+        //print json_encode(array("suggestions"=>$list->result()));
+        print json_encode($list->result());
         die;
     }
 }

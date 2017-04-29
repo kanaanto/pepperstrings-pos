@@ -19,10 +19,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                             <div class = "col-sm-6">
-                                <h4>From:</h4><input type="date" id = "date-from" class = "form-control" name="date-from">
+                                <h4>From:</h4><input type="date" id = "date-from" class = "form-control" name="date-from" readonly>
                             </div>
                             <div class = "col-sm-6">
-                                <h4>To:</h4><input type="date" id = "date-to" class = "form-control" name="date-to">
+                                <h4>To:</h4><input type="date" id = "date-to" class = "form-control" name="date-to" readonly>
                             </div>
                         </div>
                         <div class = "box-body">
@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <h3 class="box-title">Bar</h3>
                                         </div>
                                         <div class="box-body">
-                                            <table id="inventory_table" class="display" cellspacing="0" width="100%">
+                                            <table id="inventory_table_bar" class="display" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Item</th>
@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </div>
                                         <div class = "box-body">
-                                            <table id="" class="display" cellspacing="0" width="100%" >
+                                            <table id="inventory_table_kitchen" class="display" cellspacing="0" width="100%" >
                                                 <thead>
                                                     <tr>
                                                         <th>Item</th>

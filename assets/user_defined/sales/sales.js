@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('#date-from').val(output);
     $('#date-to').val(output);
 
-    $('tbody td a:first-child').on('click', function(event){
+    $('#sales-table').on('click', 'tbody td a:first-child', function(event){
         var id = $(this).attr('id').split('-')[1];
         var full_url = window.location.origin + "/admin/sales/get_sales_preview?sales_id="+id;
         $.ajax({
@@ -30,10 +30,25 @@ $(document).ready(function() {
         });
     });
 
-    function get_preview(element){
-        alert('yup');
+    $("#filterDate").on('click', function(event){
+        var date_from = $("#date-from").val(), date_to = $("#date-to").val();
+        var full_url = window.location.origin + "/admin/sales/get_sales_details?date_from="+date_from+"&date_to="+date_to;
+        $.ajax({
+            url:full_url,
+            dataType:"text",
+            type:"GET",
+            success:function(result){
+                var newRow = result;
+                var table = $('table.display').DataTable();
+                table.clear().draw();
+                table.rows.add($(newRow)).draw();
+                $('#preview-body').html("");
+            },
+            error:function(val){
+                console.log(val);
+            }
 
-    }
-   
-
+        });
+        
+    });
 });

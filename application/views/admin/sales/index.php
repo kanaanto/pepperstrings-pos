@@ -11,11 +11,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <section class="content">
                     <div class = "box box-danger">
                         <div class = "box-header with-border">
-                            <div class = "col-sm-6">
+                            <div class = "col-sm-5">
                                 <h4>From:</h4><input type="date" id = "date-from" class = "form-control" name="date-from">
                             </div>
-                            <div class = "col-sm-6">
+                            <div class = "col-sm-5">
                                 <h4>To:</h4><input type="date" id = "date-to" class = "form-control" name="date-to">
+                            </div>
+                            <div class = "col-sm-2">
+                                <br><br>
+                                <input type = "button" id = "filterDate" class = "btn btn-primary" value = "Search">
                             </div>
                         </div>
                             <div class = "box-body">
@@ -25,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <h3 class = "box-title">Sales</h3>
                                         </div>
                                         <div class = "box-body">
-                                            <table class = "display"> 
+                                            <table class = "display" id = "sales-table"> 
                                                 <thead>
                                                     <tr>
                                                         <th>Time</th>
@@ -44,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <th>View</th>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id = "sales-table-body">
                                                     <?php foreach($sales_details->result() as $row): ?>
                                                         <tr>
                                                             <td><?=$row->time?></td>
