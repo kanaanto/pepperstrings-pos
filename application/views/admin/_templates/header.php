@@ -63,6 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php if ($this->router->fetch_class() == 'products'):?>
         <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datatable/data-table.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url($user_defined . '/products/products.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/bootstrap-select/css/bootstrap-select.min.css'); ?>">
 <?php endif; ?>
 <?php if ($this->router->fetch_class() == 'sales'):?>
         <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datatable/data-table.css'); ?>">

@@ -14,12 +14,6 @@ class Inventory_model extends CI_Model {
         return $query;
     }
 
-    public function get_inventory_autocomplete($query){
-        $this->db->select('inv_name AS value, inventory_id AS data');
-        $this->db->like('inv_name',$query);
-        $query = $this->db->get('inventories');
-        return $query;
-    }
 
     public function get_bar_inventory_list(){
         $this->db->select('*');
@@ -50,4 +44,27 @@ class Inventory_model extends CI_Model {
         $this->db->update('inventories');
     
     }
+
+    public function delete_inventory($id){
+        $this->db->delete('inventories', array("inventory_id" => $id));
+
+    }
+
+    public function close_cashier(){
+        $this->db->select('*');
+        $query = $this->db->get('inventories');
+        foreach ($query->result() as $inv) {
+            $array = array(
+                "qty" => $inv->inv_end,
+                "inv_in" => 0,
+                "inv_out" => 0
+            );
+            $this->db->set($array);
+            $this->db->where('inventory_id', $inv->inventory_id);
+            $this->db->update('inventories');
+        }
+
+        
+    }
+
 }

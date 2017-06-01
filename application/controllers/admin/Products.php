@@ -58,6 +58,9 @@ class Products extends Admin_Controller {
             /* Breadcrumbs */
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
+            /*List Inv ID and Name*/
+            $this->data['inv_list'] = $this->inventory_model->get_inventory_items();
+
             /*List Units*/
             $this->data['prod_types'] = $this->products_model->get_prod_types();
             
@@ -185,8 +188,18 @@ class Products extends Admin_Controller {
                     $this->products_inventory_model->update_products_inventory($prod_inv);
                 }
             } 
+            redirect(site_url('/admin/products'));
+        }
+    }
 
-            
+    public function delete_product(){
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+        else
+        {
+            $this->products_model->delete_product($this->input->get("prod_id"));
             redirect(site_url('/admin/products'));
         }
     }

@@ -97,9 +97,9 @@ class Inventory extends Admin_Controller {
             $this->form_validation
                 ->set_rules("item_beg","Item Beginning", "trim|required");
             $this->form_validation
-                ->set_rules("item_in","Item In", "trim|required");
+                ->set_rules("item_in","Item In", "trim");
             $this->form_validation
-                ->set_rules("item_out","Item Out", "trim|required");
+                ->set_rules("item_out","Item Out", "trim");
 
             if($this->form_validation->run() == TRUE){
                 $data = array(
@@ -124,11 +124,27 @@ class Inventory extends Admin_Controller {
 
     }
 
-    public function get_inventory_items_autocomplete(){
-        $list = $this->inventory_model->get_inventory_autocomplete($this->input->get("query"));
-        header('Content-Type: application/json');
-        //print json_encode(array("suggestions"=>$list->result()));
-        print json_encode($list->result());
-        die;
+    public function delete_inventory(){
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+        else
+        {
+            $this->inventory_model->delete_inventory($this->input->get("inv_id"));
+            redirect(site_url('/admin/inventory'));
+        }
+    }
+
+    public function close_cashier(){
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+        else
+        {
+            $this->inventory_model->close_cashier();
+            redirect(site_url('/admin/inventory'));
+        }
     }
 }

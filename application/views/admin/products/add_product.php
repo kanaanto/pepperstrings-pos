@@ -21,15 +21,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             echo form_open("admin/products/insert_product", $attributes);
                         ?>
                             <div class="modal-body" id = "form-inputs">
-                                <!-- <div class = "form-group">
-                                    <label class = "control-label col-sm-2" for = "category">Category</label>
-                                    <div class = "col-sm-10">
-                                        <select class = "form-control" id = "category" name = "prod_is_kitchen">
-                                            <option value = "0">Bar</option>
-                                            <option value = "1">Kitchen</option>
-                                        </select>
-                                    </div>
-                                </div> -->
                                 <div class = "form-group">
                                     <label class = "control-label col-sm-2" for = "name">Name</label>
                                     <div class = "col-sm-10">
@@ -73,10 +64,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class = "form-group">
                                     <label class = "control-label col-sm-2" for = "inventory_item">Affected Inventory</label>
-                                    <div class = "col-sm-4">
-                                        <input type = "hidden" name = "prod_affected_inv_id[]" id = "invId-0">
-                                        <input type = "text" class = "form-control autocomplete" name = "prod_affected_inv[]" 
-                                        id = "inventoryItem-0" placeholder = "Inventory Name">
+                                    <div class = "col-sm-4" id = "affected-inv-el">
+                                        <select name = "prod_affected_inv_id[]" class = "selectpicker">
+                                            <?php foreach ($inv_list->result() as $row): ?>
+                                                <option value = '<?=$row->inventory_id?>'><?=$row->inv_name?></option>
+                                            <?php endforeach; ?>    
+                                        </select>
                                     </div>
                                     <label class = "control-label col-sm-2" for = "quantity">Quantity</label>
                                     <div class = "col-sm-2">

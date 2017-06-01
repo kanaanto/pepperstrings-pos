@@ -64,6 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li-->
                                     <li class="user-footer">
                                         <div class="pull-left">
+                                            <a href="<?php echo site_url('admin/inventory/close_cashier'); ?>" class="btn btn-default btn-flat">Close Cashier</a>
                                             <a href="<?php echo site_url('admin/users/profile/'.$user_login['id']); ?>" class="btn btn-default btn-flat"><?php echo lang('header_profile'); ?></a>
                                         </div>
                                         <div class="pull-right">

@@ -63,8 +63,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <td id = "out-<?=$row->inventory_id?>"><?=$row->inv_out?></td>
                                                         <td id = "end-<?=$row->inventory_id?>"><?=$row->inv_end?></td>
                                                         <td>
-                                                            <a href = "#" id = "<?=$row->inventory_id?>" class = "edit_clickable" data-toggle="modal" data-target="#edit_item_modal">
+                                                            <a  href = "#" id = "<?=$row->inventory_id?>" class = "edit_clickable" data-toggle="modal" data-target="#edit_item_modal">
                                                                 <span  class = "fa fa-edit">
+                                                            </a>
+                                                            &nbsp
+                                                            <a onclick = "return confirm_delete();" href = "inventory/delete_inventory?inv_id=<?=$row->inventory_id?>">
+                                                                <span  class = "fa fa-trash">
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -112,8 +116,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <td id = "out-<?=$row->inventory_id?>"><?=$row->inv_out?></td>
                                                         <td id = "end-<?=$row->inventory_id?>"><?=$row->inv_end?></td>
                                                         <td>
-                                                            <a href = "#" id = "<?=$row->inventory_id?>" class = "edit_clickable" data-toggle="modal" data-target="#edit_item_modal">
+                                                            <a  href = "#" id = "<?=$row->inventory_id?>" class = "edit_clickable" data-toggle="modal" data-target="#edit_item_modal">
                                                                 <span  class = "fa fa-edit">
+                                                            </a>
+                                                            &nbsp
+                                                            <a onclick = "return confirm_delete();" href = "inventory/delete_inventory?inv_id=<?=$row->inventory_id?>">
+                                                                <span  class = "fa fa-trash">
                                                             </a>
                                                         </td>
                                                     </tr>

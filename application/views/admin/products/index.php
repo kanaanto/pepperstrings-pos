@@ -66,6 +66,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <a href = "products/edit_product?prod_id=<?=$row->product_id?>">
                                                                     <span class = "fa fa-edit"></span>
                                                                 </a>
+                                                                &nbsp
+                                                                <a onclick = "return confirm_delete();" href = "products/delete_product?prod_id=<?=$row->product_id?>">
+                                                                    <span class = "fa fa-trash"></span>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     <?php } ?>
@@ -121,6 +125,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <td>
                                                                 <a href = "products/edit_product?prod_id=<?=$row->product_id?>">
                                                                     <span class = "fa fa-edit"></span>
+                                                                </a>
+                                                                &nbsp
+                                                                <a onclick = "return confirm_delete();" href = "products/delete_product?prod_id=<?=$row->product_id?>">
+                                                                    <span class = "fa fa-trash"></span>
                                                                 </a>
                                                             </td>
                                                         </tr>

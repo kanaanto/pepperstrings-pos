@@ -40,3 +40,9 @@ $(document).ready(function() {
         $('#item-out').val($("#out-"+id).text());
     });
 } );
+
+function confirm_delete(){
+    if (!confirm("Are you sure you want to delete this item?")){
+        return false;
+    }
+}
