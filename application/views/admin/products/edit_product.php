@@ -88,20 +88,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <?php if(count($prod_inventory->result()) == 0):?>
-                                    <div class = "form-group">
-                                        <label class = "control-label col-sm-2" for = "inventory_item">Affected Inventory</label>
-                                        <div class = "col-sm-4">
-                                            <input type = "hidden" name = "prod_affected_inv_id[]" id = "invId-0">
-                                            <input type = "text" class = "form-control autocomplete" name = "prod_affected_inv[]" 
-                                            id = "inventoryItem-0" placeholder = "Inventory Name">
-                                        </div>
-                                        <label class = "control-label col-sm-2" for = "quantity">Quantity</label>
-                                        <div class = "col-sm-2">
-                                            <input type = "number" class = "form-control" id = "quantity" name = "prod_affected_qty[]">
-                                        </div>
-                                        <div class = "col-sm-2">
-                                            <button type = "button" class = "btn btn-danger" id = "add-affected-inv">Add Field</button>
-                                        </div>
+                                    <label class = "control-label col-sm-2" for = "inventory_item">Affected Inventory</label>
+                                    <div class = "col-sm-4" id = "affected-inv-el">
+                                        <select name = "prod_affected_inv_id[]" class = "selectpicker">
+                                            <?php foreach ($inv_list->result() as $row): ?>
+                                                <option value = '<?=$row->inventory_id?>'><?=$row->inv_name?></option>
+                                            <?php endforeach; ?>    
+                                        </select>
+                                    </div> 
+                                    <label class = "control-label col-sm-2" for = "quantity">Quantity</label>
+                                    <div class = "col-sm-2">
+                                        <input type = "number" class = "form-control" id = "quantity" name = "prod_affected_qty[]">
+                                    </div>
+                                    <div class = "col-sm-2">
+                                        <button type = "button" class = "btn btn-danger" id = "add-affected-inv">Add Field</button>
                                     </div>
                                 <?php endif;?>
                                 <?php foreach($prod_inventory->result() as $key=>$row):?>
@@ -111,16 +111,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?php else:?>
                                         <div class = "form-group" id = "added-fields-<?=$key?>">
                                             <label class = "control-label col-sm-2" for = "inventory_item"></label>
-                                    <?php endif;?>
-                                            <div class = "col-sm-4">
-                                                <input type = "hidden" name = "prod_affected_inv_id[]"  value = "<?=$row->inventory_id?>">
-                                                <input type = "text" class = "form-control autocomplete" name = "prod_affected_inv[]" 
-                                                 placeholder = "Inventory Name" value = "<?=$row->inv_name?>">
-                                            </div>
+                                    <?php endif;?> 
+                                            <div class = "col-sm-4" id = "affected-inv-el">
+                                                <select name = "prod_affected_inv_id[]" class = "selectpicker">
+                                                    <?php foreach ($inv_list->result() as $inv): ?>
+                                                        <?php if($row->inventory_id == $inv->inventory_id):?>
+                                                            <option value = '<?=$inv->inventory_id?>' selected>
+                                                                <?=$inv->inv_name?>
+                                                            </option>
+                                                        <?php else:?>
+                                                            <option value = '<?=$inv->inventory_id?>'>
+                                                                <?=$inv->inv_name?>
+                                                            </option>
+                                                        <?php endif;?>
+                                                        
+                                                    <?php endforeach; ?>    
+                                                </select>
+                                            </div> 
                                             <label class = "control-label col-sm-2" for = "quantity">Quantity</label>
                                             <div class = "col-sm-2">
-                                                <input type = "number" class = "form-control" id = "quantity" name = "prod_affected_qty[]" 
-                                                    value = "<?=$row->qty?>">
+                                                <input type = "number" class = "form-control" id = "quantity" name = "prod_affected_qty[]">
                                             </div>
                                             <?php if($key=='0'):?>
                                                 <div class = "col-sm-2">

@@ -130,6 +130,9 @@ class Products extends Admin_Controller {
             /* Breadcrumbs */
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
+            /*List Inv ID and Name*/
+            $this->data['inv_list'] = $this->inventory_model->get_inventory_items();
+
             /*List Units*/
             $this->data['prod_types'] = $this->products_model->get_prod_types();
             

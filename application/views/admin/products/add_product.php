@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <option value = '<?=$row->inventory_id?>'><?=$row->inv_name?></option>
                                             <?php endforeach; ?>    
                                         </select>
-                                    </div>
+                                    </div> 
                                     <label class = "control-label col-sm-2" for = "quantity">Quantity</label>
                                     <div class = "col-sm-2">
                                         <input type = "number" class = "form-control" id = "quantity" name = "prod_affected_qty[]">

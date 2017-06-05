@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url($user_defined . '/products/products.js'); ?>"></script>
 <?php endif;?>
 <?php if ($this->router->fetch_class() == 'products' && ($this->router->fetch_method() == 'add_product' || $this->router->fetch_method() == 'edit_product')):?>
-        <script src="<?php echo base_url($plugins_dir . '/jqueryautocomplete/jquery.autocomplete.min.js'); ?>"></script>
+        
         <script src="<?php echo base_url($user_defined . '/products/add_product.js'); ?>"></script>
         <script src="<?php echo base_url($plugins_dir . '/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>
 <?php endif;?>
