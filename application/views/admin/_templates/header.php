@@ -68,3 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datatable/data-table.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url($user_defined . '/sales/sales.css'); ?>">
 <?php endif; ?>
+<?php if ($this->router->fetch_class() == 'orders'):?>
+        <link rel="stylesheet" href="<?php echo base_url($user_defined . '/orders/orders.css'); ?>">
+<?php endif; ?>

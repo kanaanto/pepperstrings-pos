@@ -31,7 +31,7 @@ header('Vary: Accept-Encoding');
         <meta property="og:url" content="">
         <meta property="og:site_name" content="domProjects">
     </head>
-    <body>
+    <body class="style:background-image: url('http://www.guoguiyan.com/data/out/147/69847040-pepper-wallpapers.jpg');">
         <article>
             <h1>HOME</h1>
 <?php if ($admin_link): ?>

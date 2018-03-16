@@ -33,16 +33,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-bootstrap.js'); ?>"></script>
         <script src="<?php echo base_url($user_defined . '/inventory/inventory.js'); ?>"></script>
 <?php endif;?>
-<?php if ($this->router->fetch_class() == 'products'):?>
+<?php if ($this->router->fetch_class() == 'products' && $this->router->fetch_method() == 'index'):?>
         <script src="<?php echo base_url($plugins_dir . '/datatable/data-table.min.js'); ?>"></script>
         <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-bootstrap.js'); ?>"></script>
-        <script src="<?php echo base_url($plugins_dir . '/jqueryautocomplete/jquery.autocomplete.min.js'); ?>"></script>
         <script src="<?php echo base_url($user_defined . '/products/products.js'); ?>"></script>
+<?php endif;?>
+<?php if ($this->router->fetch_class() == 'products' && ($this->router->fetch_method() == 'add_product' || $this->router->fetch_method() == 'edit_product')):?>
+        <script src="<?php echo base_url($plugins_dir . '/jqueryautocomplete/jquery.autocomplete.min.js'); ?>"></script>
+        <script src="<?php echo base_url($user_defined . '/products/add_product.js'); ?>"></script>
 <?php endif;?>
 <?php if ($this->router->fetch_class() == 'sales'):?>
         <script src="<?php echo base_url($plugins_dir . '/datatable/data-table.min.js'); ?>"></script>
         <script src="<?php echo base_url($plugins_dir . '/datatable/data-table-bootstrap.js'); ?>"></script>
         <script src="<?php echo base_url($user_defined . '/sales/sales.js'); ?>"></script>
+<?php endif;?>
+<?php if ($this->router->fetch_class() == 'orders'):?>
+        <script src="<?php echo base_url($user_defined . '/orders/orders.js'); ?>"></script>
 <?php endif;?>
     </body>
 </html>

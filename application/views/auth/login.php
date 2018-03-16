@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
-            <div class="login-logo">
-                <a href="#"><b>Admin</b><?php echo $title_lg; ?></a>
+            <div class="login-logo" >
+                <a href="#" style="color:#fff"><b>PepperStrings</b><?php echo $title_lg; ?></a>
             </div>
 
             <div class="login-box-body">

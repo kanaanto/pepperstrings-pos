@@ -53,6 +53,7 @@ $route['default_controller'] = 'admin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+//$route[''] = 'admin/orders';
 $route['admin'] = 'admin/orders';
 $route['admin/prefs/interfaces/(:any)'] = 'admin/prefs/interfaces/$1';
 

@@ -28,5 +28,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <![endif]-->
 <?php endif; ?>
     </head>
-    <body class="hold-transition login-page">
+    <body class="hold-transition login-page" style="background-image: url(/pepperstrings/assets/user_defined/pepper-bg.jpg);background-size:cover;">
         <div class="login-box">

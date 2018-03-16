@@ -9,52 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </section>
 
                 <section class="content">
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Edit Item Info</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="item-name" class = "col-sm-3 control-label">Item Name:</label>
-                                            <div class = "col-sm-9">
-                                                <input type="text" class="form-control" id="item-name" value = "Red Horse">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="item-name" class = "col-sm-3 control-label">Beg Quantity</label>
-                                            <div class = "col-sm-9">
-                                                <input type="number" class="form-control" id="item-name" value = "10">
-                                            </div>
-                                        </div>
-                                          <div class="form-group">
-                                            <label for="item-name" class = "col-sm-3 control-label">In Quantity</label>
-                                            <div class = "col-sm-9">
-                                                <input type="number" class="form-control" id="item-name" value = "10">
-                                            </div>
-                                          </div>
-                                        <div class="form-group">
-                                            <label for="item-name" class = "col-sm-3 control-label">Out Quantity</label>
-                                                <div class = "col-sm-9">
-                                                    <input type="number" class="form-control" id="item-name" value = "10">
-                                                </div>
-                                          </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!--Box-->
                     <div class = "box box-danger">
                         <div class = "box-header with-border">
+                            <div class = "row">
+                                <div class = "col-sm-12">
+                                    <a class = "btn btn-info" data-toggle = "modal" data-target = "#add_item_modal">
+                                    <i class = "fa fa-plus"></i> Add Inventory</a>
+                                </div>
+                            </div>
                             <div class = "col-sm-6">
                                 <h4>From:</h4><input type="date" id = "date-from" class = "form-control" name="date-from">
                             </div>
@@ -70,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <h3 class="box-title">Bar</h3>
                                         </div>
                                         <div class="box-body">
-                                            <table id="" class="display" cellspacing="0" width="100%">
+                                            <table id="inventory_table" class="display" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Item</th>
@@ -92,30 +55,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
+                                                    <?php foreach($bar_list->result() as $row) { ?>
                                                     <tr>
-                                                        <td>Red Horse</td>
-                                                        <td>10</td>
-                                                        <td>10</td>
-                                                        <td>15</td>
-                                                        <td>5</td>
+                                                        <td id = "name-<?=$row->inventory_id?>"><?=$row->inv_name?></td>
+                                                        <td id = "beg-<?=$row->inventory_id?>"><?=$row->qty?></td>
+                                                        <td id = "in-<?=$row->inventory_id?>"><?=$row->inv_in?></td>
+                                                        <td id = "out-<?=$row->inventory_id?>"><?=$row->inv_out?></td>
+                                                        <td id = "end-<?=$row->inventory_id?>"><?=$row->inv_end?></td>
                                                         <td>
-                                                            <a data-toggle="modal" data-target="#myModal">
-                                                                <span class = "fa fa-edit">
+                                                            <a href = "#" id = "<?=$row->inventory_id?>" class = "edit_clickable" data-toggle="modal" data-target="#edit_item_modal">
+                                                                <span  class = "fa fa-edit">
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>San Mig Light</td>
-                                                        <td>30</td>
-                                                        <td>15</td>
-                                                        <td>43</td>
-                                                        <td>2</td>
-                                                        <td>
-                                                            <a data-toggle="modal" data-target="#myModal">
-                                                                <span class = "fa fa-edit">
-                                                            </a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php } ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -151,30 +104,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
+                                                    <?php foreach($kitchen_list->result() as $row) { ?>
                                                     <tr>
-                                                        <td>Tomatoes</td>
-                                                        <td>10</td>
-                                                        <td>10</td>
-                                                        <td>15</td>
-                                                        <td>5</td>
+                                                        <td id = "name-<?=$row->inventory_id?>"><?=$row->inv_name?></td>
+                                                        <td id = "beg-<?=$row->inventory_id?>"><?=$row->qty?></td>
+                                                        <td id = "in-<?=$row->inventory_id?>"><?=$row->inv_in?></td>
+                                                        <td id = "out-<?=$row->inventory_id?>"><?=$row->inv_out?></td>
+                                                        <td id = "end-<?=$row->inventory_id?>"><?=$row->inv_end?></td>
                                                         <td>
-                                                            <a data-toggle="modal" data-target="#myModal">
-                                                                <span class = "fa fa-edit">
+                                                            <a href = "#" id = "<?=$row->inventory_id?>" class = "edit_clickable" data-toggle="modal" data-target="#edit_item_modal">
+                                                                <span  class = "fa fa-edit">
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Potatoes</td>
-                                                        <td>30</td>
-                                                        <td>15</td>
-                                                        <td>43</td>
-                                                        <td>2</td>
-                                                        <td>
-                                                            <a data-toggle="modal" data-target="#myModal">
-                                                                <span class = "fa fa-edit">
-                                                            </a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php } ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -183,7 +126,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>    
                     </div>
-                        
                 </section>
+                <?=$add_inventory_modal?>
+                <?=$edit_inventory_modal?>
             </div>
 

@@ -37,10 +37,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <label class = "control-label col-sm-2" for = "menu-group">Menu Group</label>
                                             <div class = "col-sm-10">
                                                 <select class = "form-control" id = "menu-group">
-                                                    <option value = "first-option">first-option</option>
-                                                    <option value = "second-option">second-option</option>
-                                                    <option value = "third-option">third-option</option>
-                                                    <option value = "fourth-option">fourth-option</option>
+                                                    <<?php foreach ($prod_types->result() as $row): ?>
+                                                        <option value = '<?=$row->prod_type_id?>'><?=$row->prod_type_name?></option>
+                                                    <?php endforeach ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -57,9 +56,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <label class = "control-label col-sm-2" for = "unit">Unit</label>
                                             <div class = "col-sm-10">
                                                 <select class = "form-control" id = "unit">
-                                                    <option value = "first-option">Piece</option>
-                                                    <option value = "second-option">Bottle</option>
-                                                    <option value = "second-option">Pitcher</option>
+                                                    <<?php foreach ($prod_unit->result() as $row): ?>
+                                                        <option value = '<?=$row->unit?>'><?=$row->unit?></option>
+                                                    <?php endforeach ?>
                                                 </select>
                                             </div>
                                         </div>
